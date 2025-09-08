@@ -1,17 +1,43 @@
 #!/bin/bash
+# Author: Akshay-Apex
+# Description: Script for installing and setting up NS2, Nam, and XGraph
 
-echo "Installing NS2..."
-sudo apt install ns2
 
-echo "Downloading nam package..."
-git clone "https://github.com/Akshay-Apex-Sub/Nam_Package.git"
+# Save current directory
+init_dir=$PWD
 
-cd Nam_Package
-echo "Installing nam..."
-sudo dpkg -i nam_1.14_amd64.deb
+# Installing ns2
+echo "Installing ns2..."
+sudo apt install -y ns2
 
-echo "Deleting repository..."
-cd ..
-rm -rf Nam_Package
+# Installing nam
+if [ ! -f /usr/local/bin/nam ] 
+then
+	echo "Downloading nam package..."
+	git clone "https://github.com/Akshay-Apex/Nam_Package.git"
+
+	echo "Installing nam..."
+	cd Nam_Package
+	sudo dpkg -i nam_1.14_amd64.deb
+else 
+	echo "nam is already installed!"
+fi
+
+# Installing XGRAPH
+if [ ! -f /usr/local/bin/XGraph4.38_linux64/bin/xgraph ] 
+then
+	echo "Downloading xgraph package..."
+	wget "https://www.xgraph.org/linux/xgraph_4.38_linux64.tar.gz"
+	tar xvzf xgraph_4.38_linux64.tar.gz
+	mv XGraph4.38_linux64 /usr/local/bin/XGraph4.38_linux64
+	grep -qxF "alias xgraph=/usr/local/bin/XGraph4.38_linux64/bin/xgraph" ~/.bashrc || echo "alias xgraph=/usr/local/bin/XGraph4.38_linux64/bin/xgraph" >> ~/.bashrc && source ~/.bashrc
+else 
+	echo "xgraph is already installed!"
+fi
+	
+# Deleting installer directory
+echo "Deleting installer directory..."
+cd $init_dir/..
+rm -rf NS2_Suite_Installer
 
 echo "Installation finished!"
