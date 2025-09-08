@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo "Installing NS2..."
+sudo apt install ns2
+
+echo "Downloading nam package..."
+git clone "https://github.com/Akshay-Apex-Sub/Nam_Package.git"
+
+cd Nam_Package
+echo "Installing nam..."
+sudo dpkg -i nam_1.14_amd64.deb
+
+echo "Deleting repository..."
+cd ..
+rm -rf Nam_Package
+
+echo "Installation finished!"
