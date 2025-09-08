@@ -29,7 +29,7 @@ then
 	echo "Downloading xgraph package..."
 	wget "https://www.xgraph.org/linux/xgraph_4.38_linux64.tar.gz"
 	tar xvzf xgraph_4.38_linux64.tar.gz
-	mv XGraph4.38_linux64 /usr/local/bin/XGraph4.38_linux64
+	sudo mv XGraph4.38_linux64 /usr/local/bin/XGraph4.38_linux64
 	grep -qxF "alias xgraph=/usr/local/bin/XGraph4.38_linux64/bin/xgraph" ~/.bashrc || echo "alias xgraph=/usr/local/bin/XGraph4.38_linux64/bin/xgraph" >> ~/.bashrc && source ~/.bashrc
 else 
 	echo "xgraph is already installed!"
