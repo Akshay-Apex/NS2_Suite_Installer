@@ -30,7 +30,11 @@ then
 	wget "https://www.xgraph.org/linux/xgraph_4.38_linux64.tar.gz"
 	tar xvzf xgraph_4.38_linux64.tar.gz
 	sudo mv XGraph4.38_linux64 /usr/local/bin/XGraph4.38_linux64
-	grep -qxF "alias xgraph=/usr/local/bin/XGraph4.38_linux64/bin/xgraph" ~/.bashrc || echo "alias xgraph=/usr/local/bin/XGraph4.38_linux64/bin/xgraph" >> ~/.bashrc && source ~/.bashrc
+	grep -qxF "alias xgraph=/usr/local/bin/XGraph4.38_linux64/bin/xgraph" ~/.bashrc || echo "alias xgraph=/usr/local/bin/XGraph4.38_linux64/bin/xgraph" >> ~/.bashrc 
+	
+	# Installing gtk
+	echo "Installing gtk package..."
+	sudo apt install libcanberra-gtk-module
 else 
 	echo "xgraph is already installed!"
 fi
@@ -40,4 +44,5 @@ echo "Deleting installer directory..."
 cd $init_dir/..
 rm -rf NS2_Suite_Installer
 
+source ~/.bashrc
 echo "Installation finished!"
