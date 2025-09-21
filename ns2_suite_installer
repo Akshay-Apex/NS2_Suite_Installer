@@ -34,7 +34,7 @@ then
 	
 	# Installing gtk
 	echo "Installing gtk package..."
-	sudo apt install libcanberra-gtk-module
+	sudo apt install -y libcanberra-gtk-module
 else 
 	echo "xgraph is already installed!"
 fi
